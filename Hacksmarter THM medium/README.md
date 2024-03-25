@@ -53,7 +53,27 @@ web.config дотор хэрэглэгчийн нэвтрэх мэдээлэл �
 ингээд user.txt -г олсон.
 type ``user.txt - THM{4ll15n0tw3llw1thd3ll}`` 
 
+Одоо root.txt авахын тулд эрхийн түвшинг ихэсгэх үе шатандаа орно.
 
+<p>Ямар нэгэн privilage escalation хийх боломж хайж 30-40 минут зарсаны дараа Program files (x86) дотроос Spoofer гэдэг нэмэлтээр суулгасан программ
+олсон ба changes.txt дотор нь spoofer-1.4.6 (2020-07-24) гэж байсан хайгаад үзэхэд unquoted service path гэдэг Privilage escalation хийх боломж үүсдэг
+эмзэг байдалтай байсан.
+</p>
 
+``
+Unquoted service path - In simple terms, when a service is created whose executable path
+contains spaces and isn't enclosed within quotes, leads to a vulnerability known as 
+Unquoted Service Path which allows a user to gain SYSTEM privileges 
+(only if the vulnerable service is running with SYSTEM privilege level 
+which most of the time it is).
+``
+<p>Spoofer folder дотор бичих эрхгүй ч гэсэн устгах шинээр файл үүсгэх, serviceг асаах,зогсоох эрхтэй байсан.</p>
+
+``
+sc.exe stop spoofer-scheduler - Унтраах
+sc.exe start spoofer-scheduler - Асаах
+``
+Тиймээс хэрвээ энэхүү service -г унраагаад оронд нь өөрийнхөө хортой программуудыг ажиллуулаад асаавал ажиллана гэсэн үг юм.
+Гэхдээ Windows defender ажиллах байсан тул код нь илэрсэн тохиолдолд Quarantine хийгдэх тул 
 
 
